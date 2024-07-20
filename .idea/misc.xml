@@ -10,10 +10,19 @@
         <option value="$PROJECT_DIR$/Ms_Course/pom.xml" />
         <option value="$PROJECT_DIR$/Getway/pom.xml" />
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/ConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/MSstudent/pom.xml" />
+        <option value="$PROJECT_DIR$/Ms-Course/pom.xml" />
+        <option value="$PROJECT_DIR$/Ms-Student/pom.xml" />
+        <option value="$PROJECT_DIR$/MScourse/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/ConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/Ms-Course/pom.xml" />
+        <option value="$PROJECT_DIR$/Ms-Student/pom.xml" />
         <option value="$PROJECT_DIR$/Student/pom.xml" />
       </set>
     </option>

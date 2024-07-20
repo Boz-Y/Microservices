@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/ConfigServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Getway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Ms_Course/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Ms_Student/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MScourse/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MSstudent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Ms-Course/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Ms-Student/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/shared/src/main/java" charset="UTF-8" />
   </component>

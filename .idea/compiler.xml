@@ -2,23 +2,34 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="MSstudent" />
         <module name="shared" />
-        <module name="Student" />
-        <module name="Course" />
+        <module name="config-server" />
+        <module name="MScourse" />
         <module name="Getway" />
         <module name="eureka" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ConfigServer" target="17" />
+      <module name="Ms-Course" target="17" />
+      <module name="Ms-Student" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Course" options="-parameters" />
+      <module name="ConfigServer" options="-parameters" />
       <module name="Getway" options="-parameters" />
-      <module name="Student" options="-parameters" />
+      <module name="MScourse" options="-parameters" />
+      <module name="MSstudent" options="-parameters" />
+      <module name="Ms-Course" options="-parameters" />
+      <module name="Ms-Student" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="shared" options="-parameters" />
     </option>
