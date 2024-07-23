@@ -1,0 +1,137 @@
+version: '3.8'
+
+services:
+  config-server:
+    container_name: config-server
+    image: config-server
+    build:
+      context: ./config-server
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    networks:
+      - backend
+    restart: unless-stopped
+
+  eureka-service:
+    container_name: eureka-service
+    image: eureka-service
+    build:
+      context: ./eureka-service
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - backend
+    environment:
+      - HOSTNAME=eureka-service
+      - PROFILE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+    restart: unless-stopped
+    depends_on:
+      - config-server
+
+  course-service:
+    container_name: course-service
+    image: course-service
+    build:
+      context: ./course-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    networks:
+      - backend
+    environment:
+      - MONGO_HOST=mongo
+      - EUREKA_URI=http://eureka-service:8761/eureka/
+      - HOSTNAME=student
+      - PROFILE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+    depends_on:
+      - eureka-service
+      - mongo
+      - getway-service
+      - config-server
+    restart: unless-stopped
+
+  student-service:
+    container_name: student-service
+    image: student-service
+    build:
+      context: ./student-service
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    networks:
+      - backend
+    environment:
+      - MYSQL_URI=jdbc:mysql://mysql:3306/student?createDatabaseIfNotExist=true
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=
+      - EUREKA_URI=http://discoveryservice:8761/eureka/
+      - STUDENT_SERVICE_URI=http://studentservice:8080/student
+      - HOSTNAME=student-service
+      - PROFILE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://configserver:8888
+    depends_on:
+      - eureka-service
+      - getway-service
+      - mysql
+      - student-service
+      - config-server
+    restart: unless-stopped
+
+  getway-service:
+    container_name: getway-service
+    image: getway-service
+    build:
+      context: ./getway-service
+      dockerfile: Dockerfile
+    ports:
+      - "9091:9091"
+    networks:
+      - backend
+    environment:
+      - EUREKA_URI=http://eureka-service:8761/eureka/
+      - HOSTNAME=getway-service
+      - PROFILE=prod
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+    #      - Student_SERVICE_URI=http://student-service:8080
+    #      - Course_SERVICE_URI=http://course-service:9090
+    depends_on:
+      - eureka-service
+      - config-server
+    restart: unless-stopped
+
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - backend
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: student
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+networks:
+  backend:
+    external: true
+
+volumes:
+  mongo-data:
+  mysql-data:
